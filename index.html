@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Exercises and Materials</title>
+<title>TA Sessions</title>
 <style>
   :root {
     --bg: #fafaf9;
@@ -65,23 +65,22 @@
 <body>
 <div class="wrap">
 
-  <!-- ====== CABECERA: cambia el título y la descripción ====== -->
   <header>
-    <h1>Exercises and Materials</h1>
-    <p>A collection of exercises, solutions and supporting materials.</p>
+    <h1>TA Sessions</h1>
+    <p>Exercises, solutions and supporting materials.</p>
   </header>
 
   <nav>
-    <a href="#ejercicios">Exercises</a>
-    <a href="#material">Materials</a>
+    <a href="#sessions">TA Sessions</a>
+    <a href="#materials">Materials</a>
   </nav>
 
-  <section id="ejercicios">
-    <h2>Exercises and Solutions</h2>
-    <div id="lista-ejercicios"></div>
+  <section id="sessions">
+    <h2>TA Sessions</h2>
+    <div id="lista-sesiones"></div>
   </section>
 
-  <section id="material">
+  <section id="materials">
     <h2>Materials</h2>
     <div id="lista-material"></div>
   </section>
@@ -92,20 +91,17 @@
 <script>
 /* =====================================================================
    AQUÍ AÑADES TU CONTENIDO
-   - Para añadir algo nuevo, copia una línea { ... }, pégala debajo y
-     cambia los textos. No olvides la coma al final de cada línea.
-   - Los enlaces apuntan a archivos que subas al repositorio
-     (por ejemplo, a la carpeta "ejercicios/"), o a cualquier URL.
-   - Si una solución aún no está lista, pon:  solucion: ""
+   - Cada sesión es una línea { ... }. Para añadir otra, copia la línea,
+     pégala debajo y cambia los textos. Coma al final de cada línea.
+   - Escribe el nombre EXACTO del PDF (mayúsculas incluidas).
+   - Si algo aún no está listo, déjalo vacío: ""  (saldrá "coming soon")
    ===================================================================== */
 
-const ejercicios = [
-  { titulo: "Exercise 1", descripcion: "Topic or short description", enunciado: "TA_Session_I_Exercises_8_9_4_10.pdf", solucion: "TA_Session_I_Theory_Handout.pdf" },
-  { titulo: "Exercise 2", descripcion: "Topic or short description", enunciado: "ejercicios/ejercicio2.pdf", solucion: "" },
+const sesiones = [
+  { titulo: "TA Session 1", descripcion: "Exercises 8, 9 and 4.10", teoria: "TA_Session_I_Theory_Handout.pdf", ejercicios: "TA_Session_I_Exercises_8_9_4_10.pdf", soluciones: "" },
 ];
 
 const material = [
-  { titulo: "Lecture notes, topic 1", descripcion: "Summary of key concepts", enlace: "material/apuntes1.pdf" },
 ];
 
 const ultimaActualizacion = "November 8, 2026";
@@ -127,9 +123,10 @@ function tarjeta(titulo, descripcion, botones) {
   </div>`;
 }
 
-document.getElementById("lista-ejercicios").innerHTML = ejercicios.length
-  ? ejercicios.map(e => tarjeta(e.titulo, e.descripcion, boton("Problem", e.enunciado) + boton("Solution", e.solucion))).join("")
-  : `<p class="empty">No exercises yet.</p>`;
+document.getElementById("lista-sesiones").innerHTML = sesiones.length
+  ? sesiones.map(s => tarjeta(s.titulo, s.descripcion,
+      boton("Theory handout", s.teoria) + boton("Exercises", s.ejercicios) + boton("Solutions", s.soluciones))).join("")
+  : `<p class="empty">No sessions yet.</p>`;
 
 document.getElementById("lista-material").innerHTML = material.length
   ? material.map(m => tarjeta(m.titulo, m.descripcion, boton("Open", m.enlace))).join("")
