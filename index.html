@@ -96,16 +96,18 @@
      cambia los textos. No olvides la coma al final de cada línea.
    - Escribe el nombre EXACTO del PDF (mayúsculas incluidas).
    - Si algo aún no está listo, déjalo vacío: ""  (saldrá "coming soon")
+   - Si una sesión no tiene handout, simplemente no pongas "handout".
    ===================================================================== */
 
 const ejercicios = [
   { titulo: "TA Session 1", descripcion: "Exercises 8, 9 and 4.10", handout: "TA_Session_I_Theory_Handout.pdf", enunciado: "TA_Session_I_Exercises_8_9_4_10.pdf", solucion: "TA_Session_I_Handwritten_Notes.pdf" },
+  { titulo: "TA Session 2", descripcion: "", enunciado: "TA_Session_II_Exercises.pdf", solucion: "TA_Session_II_Solutions.pdf" },
 ];
 
 const material = [
 ];
 
-const ultimaActualizacion = "November 10, 2026";
+const ultimaActualizacion = "November 18, 2026";
 
 /* ===================== No hace falta tocar lo de abajo ===================== */
 
@@ -125,7 +127,7 @@ function tarjeta(titulo, descripcion, botones) {
 }
 
 document.getElementById("lista-ejercicios").innerHTML = ejercicios.length
-  ? ejercicios.map(e => tarjeta(e.titulo, e.descripcion, boton("Handout", e.handout) + boton("Exercises", e.enunciado) + boton("Solutions", e.solucion))).join("")
+  ? ejercicios.map(e => tarjeta(e.titulo, e.descripcion, (e.handout !== undefined ? boton("Handout", e.handout) : "") + boton("Exercises", e.enunciado) + boton("Solutions", e.solucion))).join("")
   : `<p class="empty">No exercises yet.</p>`;
 
 document.getElementById("lista-material").innerHTML = material.length
